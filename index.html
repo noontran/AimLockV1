@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>𝑯𝒐𝒏𝒈𝑫𝒖𝒄🐸</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', monospace;
+      color: #f00;
+      text-align: center;
+      height: 100%;
+      overflow: hidden;
+      background-color: black;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      background: url('IMG_0496.png') no-repeat center center fixed;
+      background-size: cover;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      z-index: -2;
+      opacity: 0.8;
+      filter: brightness(0.85);
+    }
+
+    body::after {
+      content: "";
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background-color: rgba(0, 0, 0, 0.6);
+      z-index: -1;
+    }
+
+    .panel-title {
+      font-size: 36px;
+      margin-top: 30px;
+      margin-bottom: 20px;
+      color: #ff4444;
+      text-shadow: 0 0 10px #f00, 0 0 20px #f00;
+      animation: glowText 2s ease-in-out infinite alternate;
+    }
+
+    @keyframes glowText {
+      from { text-shadow: 0 0 10px #f00; }
+      to   { text-shadow: 0 0 20px #ff0000, 0 0 40px #ff0000; }
+    }
+
+    .checkbox-group {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
+      gap: 12px;
+      background-color: rgba(20, 20, 20, 0.7);
+      border: 1px solid #f00;
+      border-radius: 10px;
+      box-shadow: 0 0 20px rgba(255, 0, 0, 0.3);
+      z-index: 1;
+    }
+
+    label {
+      font-size: 16px;
+      color: #f88;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      transition: 0.3s;
+    }
+
+    label:hover {
+      color: #fff;
+      transform: translateX(5px);
+    }
+
+    input[type="checkbox"] {
+      accent-color: red;
+      transform: scale(1.2);
+      cursor: pointer;
+    }
+
+    .btn-run, .btn-login, .btn-toggle {
+      margin-top: 15px;
+      background: linear-gradient(to right, #ff0000, #880000);
+      color: #fff;
+      border: none;
+      padding: 12px 24px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      box-shadow: 0 0 10px #f00;
+      transition: all 0.3s ease;
+    }
+
+    .btn-run:hover, .btn-login:hover, .btn-toggle:hover {
+      transform: scale(1.07);
+      box-shadow: 0 0 25px #f00;
+    }
+
+    #output {
+      margin-top: 20px;
+      color: #0f0;
+      font-weight: bold;
+      text-shadow: 0 0 5px #0f0;
+      white-space: pre-line;
+    }
+
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: white;
+      font-size: 16px;
+      animation: fall linear infinite;
+      opacity: 0.8;
+      z-index: 999;
+    }
+
+    @keyframes fall {
+      0% { transform: translateY(0) rotate(0deg); }
+      100% { transform: translateY(100vh) rotate(360deg); }
+    }
+
+    .login-box {
+      margin-top: 100px;
+      animation: fadeIn 1s ease forwards;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    @keyframes fadeIn {
+      0% { opacity: 0; transform: scale(0.9); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div id="loginBox" class="login-box">
+    <div style="background-color: rgba(20,20,20,0.8); padding: 20px; border-radius: 10px; display: inline-block;">
+      <h2>🔐 Đăng Nhập Rồi Chơi</h2>
+      <input type="text" id="username" placeholder="Tài khoản"><br>
+      <input type="password" id="key" placeholder="Nhập key"><br>
+      <button class="btn-login" onclick="login()">Đăng nhập</button>
+      <p id="loginMessage" style="color: yellow; margin-top: 10px;"></p>
+    </div>
+  </div>
+  <div id="panelContent" class="hidden">
+    <div class="panel-title">𝑯𝒐𝒏𝒈𝑫𝒖𝒄🐸</div>
+
+    <form class="checkbox-group" id="featureForm">
+      <label><input type="checkbox" value="🚀 Aimlock PRO" onchange="playClick()"> 🚀 Aimlock PRO</label>
+      <label><input type="checkbox" value="🎯 Ghìm Tâm + Bám Đầu" onchange="playClick()"> 🎯 Ghìm Tâm + Bám Đầu</label>
+      <label><input type="checkbox" value="⚙️ Fix Rung + Delay" onchange="playClick()"> ⚙️ Fix Rung + Delay</label>
+      <label><input type="checkbox" value="⚡ Buff Màn 120Hz" onchange="playClick()"> ⚡ Buff Màn 120Hz</label>
+      <label><input type="checkbox" value="🧠 Head Stabilizer" onchange="playClick()"> 🧠 Head Stabilizer</label>
+      <label><input type="checkbox" value="💥 Tăng Nhạy Siêu Cấp" onchange="playClick()"> 💥 Tăng Nhạy Siêu Cấp</label>
+      <label><input type="checkbox" value="🔒 Fix Tâm – Đầm & Cứng" onchange="playClick()"> 🔒 Fix Tâm – Đầm & Cứng</label>
+    </form>
+
+    <button class="btn-toggle" onclick="toggleAll(true)">🔘 Bật tất cả</button>
+    <button class="btn-toggle" onclick="toggleAll(false)">⚪ Tắt tất cả</button>
+    <br>
+    <button class="btn-run" onclick="runSelected()">✅ Kích Hoạt Ngay</button>
+
+    <div id="output"></div>
+  </div>
+
+  <audio id="clickSound" src="https://www.soundjay.com/button/sounds/button-3.mp3" preload="auto"></audio>
+
+  <script>
+    const CORRECT_USERNAME = "hongducmakeconfig";
+    const CORRECT_KEY = "hongducioscheat";
+
+    function login() {
+      const user = document.getElementById("username").value;
+      const key = document.getElementById("key").value;
+      const message = document.getElementById("loginMessage");
+
+      if (user === CORRECT_USERNAME && key === CORRECT_KEY) {
+        document.getElementById("loginBox").classList.add("hidden");
+        document.getElementById("panelContent").classList.remove("hidden");
+      } else {
+        message.innerText = "❌ Sai tài khoản hoặc key!";
+      }
+    }
+
+    function runSelected() {
+      const checked = document.querySelectorAll('input[type="checkbox"]:checked');
+      const output = document.getElementById("output");
+      if (checked.length === 0) {
+        output.innerText = "❌ Bạn chưa chọn chức năng nào!";
+        return;
+      }
+
+      let text = "✅ Đã bật:\n";
+      checked.forEach((item, i) => {
+        setTimeout(() => {
+          text += "• " + item.value + "\n";
+          output.innerText = text;
+        }, i * 150);
+      });
+    }
+
+    function toggleAll(state) {
+      document.querySelectorAll('#featureForm input[type="checkbox"]').forEach(cb => {
+        cb.checked = state;
+        playClick();
+      });
+    }
+
+    function playClick() {
+      const sound = document.getElementById("clickSound");
+      sound.currentTime = 0;
+      sound.play();
+    }
+
+    function createSnowflake() {
+      const snowflake = document.createElement("div");
+      snowflake.className = "snowflake";
+      snowflake.innerText = "❄";
+      snowflake.style.left = Math.random() * window.innerWidth + "px";
+      snowflake.style.fontSize = (Math.random() * 12 + 8) + "px";
+      snowflake.style.opacity = Math.random();
+      snowflake.style.animationDuration = (Math.random() * 3 + 2) + "s";
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, 7000);
+    }
+
+    // ❄ Tăng mật độ tuyết: 5 bông mỗi 100ms (~50 bông/giây)
+    setInterval(() => {
+      for (let i = 0; i < 5; i++) createSnowflake();
+    }, 100);
+  </script>
+</body>
+</html>
